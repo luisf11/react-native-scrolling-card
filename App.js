@@ -1,11 +1,59 @@
 import React from "react";
 import { Icon } from "react-native-elements";
-import { StyleSheet, Text, View, StatusBar, Image } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  StatusBar,
+  Image,
+  FlatList
+} from "react-native";
 import Heart from "./assets/icons/heart";
 import LikeIcon from "./assets/icons/like.icon";
 
+const data = [
+  {
+    key: 1,
+    imageUrl: "http://via.placeholder.com/300x300",
+    title: "something"
+  },
+  {
+    key: 2,
+    imageUrl: "http://via.placeholder.com/300x300",
+    title: "something two"
+  },
+  {
+    key: 3,
+    imageUrl: "http://via.placeholder.com/300x300",
+    title: "something three"
+  },
+  {
+    key: 4,
+    imageUrl: "http://via.placeholder.com/300x300",
+    title: "something four"
+  },
+  {
+    key: 5,
+    imageUrl: "http://via.placeholder.com/300x300",
+    title: "something five"
+  },
+  {
+    key: 6,
+    imageUrl: "http://via.placeholder.com/300x300",
+    title: "something six"
+  }
+];
+
 export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: data
+    };
+  }
+  
   render() {
+  
     return (
       <View style={styles.container}>
         <View style={styles.cardContainer}>
@@ -16,14 +64,16 @@ export default class App extends React.Component {
                   <Icon name="heart" type="evilicon" color="white" size={30} />
                 </View>
               </View>
-              <View>
-                <Image
-                  style={{ flex: 1 }}
-                  source={{
-                    uri:
-                      "https://static.pexels.com/photos/193021/pexels-photo-193021.jpeg"
-                  }}
-                />
+              <View style={styles.scrollViewWrapper}>
+               <FlatList
+                horizontal
+                data={this.state.data}
+                renderItem = {({item: rowData}) => {
+                  return(
+                    <Image style={{flex:1}}  source={{uri: rowData.imageUrl }}/>
+                  );
+                }}
+               />
               </View>
             </View>
             <View style={styles.cardFooterContainer}>
@@ -75,5 +125,11 @@ const styles = StyleSheet.create({
   cardFooterContainer: {
     flex: 1,
     backgroundColor: "yellow"
+  },
+  scrollViewWrapper:{
+    width: 400,
+    height: 300,
+
   }
+
 });
