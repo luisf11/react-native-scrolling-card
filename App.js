@@ -1,5 +1,5 @@
 import React from "react";
-
+import Card from './Component/Card'
 import {
   StyleSheet,
   Text,
@@ -8,7 +8,7 @@ import {
 } from "react-native";
 
 
-const data = [
+const DATA = [
   {
     key: 1,
     imageUrl: "http://via.placeholder.com/300x400",
@@ -46,6 +46,10 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+
+      <Card 
+      data={DATA}
+      />
        
       </View>
     );
